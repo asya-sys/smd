@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>English Adventure: Explore the Animal Kingdom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@600;800&display=swap">
+<style>
+:root{--bg1:#d9f4e8;--bg2:#fff1c9;--card:#fff;--ink:#1c3a32;--mut:#47665d;--pri:#17805f;--on:#fff;--alt:#c4512a;--acc:#ffc94d;--ok:#0f6b45;--okb:#d9f6e6;--bad:#a63a25;--badb:#ffe2da;--line:#bfe0d2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#0f261f;--bg2:#2a2412;--card:#183029;--ink:#eaf6f0;--mut:#a9c7bc;--pri:#3ccf9d;--on:#08231a;--alt:#ff8a5c;--acc:#ffd166;--ok:#8be8bd;--okb:#17432f;--bad:#ffab98;--badb:#4a2219;--line:#2f4d43;color-scheme:dark}}
+:root[data-theme="dark"]{--bg1:#0f261f;--bg2:#2a2412;--card:#183029;--ink:#eaf6f0;--mut:#a9c7bc;--pri:#3ccf9d;--on:#08231a;--alt:#ff8a5c;--acc:#ffd166;--ok:#8be8bd;--okb:#17432f;--bad:#ffab98;--badb:#4a2219;--line:#2f4d43;color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%}
+body{font-family:Nunito,system-ui,sans-serif;font-weight:600;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2)) fixed;font-size:clamp(17px,1.7vw,22px);line-height:1.5}
+h1,h2,h3{font-family:"Baloo 2",system-ui,sans-serif;margin:.2em 0;line-height:1.15}
+h1{font-size:clamp(34px,6vw,68px);font-weight:800}h2{font-size:clamp(24px,3vw,36px)}
+#app{max-width:1200px;margin:0 auto;padding:14px 18px 30px;min-height:100dvh;display:flex;flex-direction:column}
+.top{display:flex;gap:10px;align-items:center;margin-bottom:10px}.top .t{flex:1;text-align:center;font-family:"Baloo 2";font-weight:800;font-size:1.05em}
+.btn{min-height:56px;padding:10px 26px;border:0;border-radius:18px;background:var(--pri);color:var(--on);font:800 1em "Baloo 2",system-ui,sans-serif;cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.2);touch-action:manipulation}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.2)}.btn.alt{background:var(--alt);color:#fff}.btn.ghost{background:var(--card);color:var(--ink);border:2px solid var(--line)}
+:root[data-theme="dark"] .btn.alt{color:#2a0f06}@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.alt{color:#2a0f06}}
+.row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:20px 24px;box-shadow:0 6px 0 var(--line)}
+.center{text-align:center}.big{font-size:clamp(56px,9vw,110px);line-height:1.1}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.tile{min-height:130px;text-align:center;cursor:pointer;font:800 1.05em "Baloo 2";color:var(--ink);background:var(--card);border:3px solid var(--line);border-radius:22px;padding:14px;touch-action:manipulation}
+.tile .ic{display:block;font-size:2.6em}.tile.on,.tile:hover{border-color:var(--pri);background:var(--okb)}
+.panel{margin-top:16px}.panel:empty{display:none}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px}
+.opt{min-height:60px;text-align:left;font:700 1em Nunito,sans-serif;color:var(--ink);background:var(--card);border:3px solid var(--line);border-radius:16px;padding:10px 16px;cursor:pointer}
+.opt.sel{border-color:var(--pri);background:var(--okb)}.opt.ok{border-color:var(--ok);background:var(--okb)}.opt.no{border-color:var(--bad);background:var(--badb);text-decoration:line-through}.opt:disabled{opacity:.85}
+.fb{min-height:1.6em;margin-top:12px;font-weight:800}.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.meta{display:flex;justify-content:space-between;font-weight:800;margin-bottom:8px;color:var(--mut)}
+.ctx{background:var(--bg1);border-radius:14px;padding:10px 16px;margin-bottom:8px;color:var(--ink)}
+.hero{text-align:center;margin:auto;padding:20px 0}.faces{font-size:clamp(40px,7vw,84px);letter-spacing:.1em}
+.faces span{display:inline-block;animation:fl 3s ease-in-out infinite}.faces span:nth-child(2n){animation-delay:.5s}.faces span:nth-child(3n){animation-delay:1s}
+@keyframes fl{50%{transform:translateY(-10px)}}@media(prefers-reduced-motion:reduce){.faces span{animation:none}}
+.sub{color:var(--mut)}.pill{display:inline-block;background:var(--acc);color:#3a2a00;border-radius:99px;padding:2px 14px;font-weight:800}
+ul{padding-left:1.2em}.chip{min-height:52px;border-radius:99px;border:3px solid var(--line);background:var(--card);color:var(--ink);padding:6px 16px;font:700 .95em Nunito;cursor:pointer;margin:4px}.chip.on{border-color:var(--pri);background:var(--okb)}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px;z-index:9}.ov .card{max-width:620px;max-height:85vh;overflow:auto}
+.foot{display:flex;justify-content:space-between;margin-top:auto;padding-top:20px}
+</style></head><body><div id="app"><div class="top" id="top"></div><main id="v" style="flex:0 1 auto"></main><div class="foot" id="foot"></div></div>
+<script>
+const $=s=>document.querySelector(s),S=["welcome","menu","obj","learn","explore","practice","play","quiz","panca","closing"],TT={menu:"Main Menu",obj:"Learning Objectives",learn:"Let’s Learn",explore:"Let’s Explore",practice:"Let’s Practice",play:"Let’s Play",quiz:"Let’s Quiz",panca:"Panca Cinta",closing:"Finish"};
+let cur="welcome",hist=[];
+function go(p,b){if(!b&&p!==cur)hist.push(cur);cur=p;draw();scrollTo(0,0)}
+const bk=()=>go(hist.pop()||"menu",1),nx=()=>go(S[Math.min(S.indexOf(cur)+1,9)]);
+function modal(t,h){const o=document.createElement("div");o.className="ov";o.innerHTML=`<div class="card"><h2>${t}</h2>${h}<div class="row"><button class="btn">OK ✔</button></div></div>`;o.onclick=e=>{if(e.target===o||e.target.tagName==="BUTTON")o.remove()};document.body.appendChild(o)}
+function tiles(el,items,fn){el.innerHTML=`<div class="grid">${items.map((x,i)=>`<button class="tile" data-i="${i}"><span class="ic">${x.ic}</span>${x.t}</button>`).join("")}</div><div class="panel card"></div>`;const p=el.querySelector(".panel"),B=[...el.querySelectorAll(".tile")];p.style.display="none";B.forEach((b,i)=>b.onclick=()=>{B.forEach(x=>x.classList.remove("on"));b.classList.add("on");p.style.display="block";p.innerHTML=fn(items[i]);p.scrollIntoView({behavior:"smooth",block:"nearest"})})}
+function engine(el,items,o){let i=0,s=0;const restart=()=>{i=0;s=0;r()};
+function end(){const g=s/items.length;el.innerHTML=`<div class="card center"><div class="big">${g>=.8?"🏆":g>=.6?"🌟":"🌱"}</div><h2>${o.name} score: ${s}/${items.length}</h2><p>${g>=.8?"Excellent! You love learning and caring for animals!":g>=.6?"Good job! Keep learning with curiosity.":"Keep trying! Review Let’s Learn and try again."}</p><div class="row"><button class="btn" id="ag">TRY AGAIN</button><button class="btn ghost" id="hm">HOME</button></div></div>`;$("#ag").onclick=restart;$("#hm").onclick=()=>go("menu")}
+function r(){const it=items[i];let sel=-1,tried=0,done=0;
+el.innerHTML=`<div class="meta"><span>${o.name} ${i+1}/${items.length}</span><span>⭐ ${s}</span></div><div class="card">${it.ctx?`<div class="ctx">${it.ctx}</div>`:""}<h2>${it.q}</h2><div class="opts">${it.o.map((x,k)=>`<button class="opt">${o.ab?"ABCD"[k]+". ":""}${x}</button>`).join("")}</div><div class="fb" aria-live="polite"></div><div class="row"><button class="btn" id="ck">CHECK ANSWER</button></div></div>`;
+const B=[...el.querySelectorAll(".opt")],fb=el.querySelector(".fb"),c=$("#ck");
+function ck(){if(done){i++;i<items.length?r():end();return}
+if(sel<0){fb.className="fb";fb.textContent="Choose an answer first. (Pilih jawaban dulu.)";return}
+if(sel===it.a){if(!tried)s++;done=1;B[sel].classList.add("ok");fb.className="fb ok";fb.textContent="✅ Excellent! Your answer is correct! "+(it.ex||"")}
+else{tried=1;B[sel].classList.add("no");fb.className="fb no";if(o.retry){B[sel].disabled=1;sel=-1;B.forEach(b=>b.classList.remove("sel"));fb.textContent="❌ Not quite! Try again!"}else{B[it.a].classList.add("ok");done=1;fb.textContent="❌ Not quite! The answer is "+"ABCD"[it.a]+". "+(it.ex||"")}}
+if(done){B.forEach(b=>b.disabled=1);c.textContent=i<items.length-1?"NEXT ▶":"SEE RESULT"}}
+B.forEach((b,k)=>b.onclick=()=>{if(done||b.disabled)return;sel=k;B.forEach(x=>x.classList.remove("sel"));b.classList.add("sel");if(o.instant)ck()});c.onclick=ck}
+r()}
+const L=[{ic:"📖",t:"Definition",b:"Descriptive text <b>describes</b> a person, animal, or thing in detail.",e:"A lion is a strong animal. (Singa adalah hewan yang kuat.)"},
+{ic:"🎯",t:"Social Function",b:"To describe a particular animal, person, or thing so readers can imagine it.",e:"Describing animals helps us admire Allah’s creation. 🌍"},
+{ic:"🧩",t:"Generic Structure",b:"<b>1. Identification</b>: names the animal.<br><b>2. Description</b>: tells its parts, color, habit, and food.",e:"<b>Identification:</b> A rabbit is a small animal. <b>Description:</b> It has soft fur and long ears. It eats carrots."},
+{ic:"⏰",t:"Simple Present Tense",b:"Use it for facts and habits. He/she/it + verb<b>-s</b>.",e:"A dolphin lives in the sea. Dolphins eat fish."},
+{ic:"🎨",t:"Adjectives",b:"Words that describe nouns: big, small, soft, strong, colorful.",e:"The big elephant is gentle. We should be kind to it. 💛"},
+{ic:"🏷️",t:"Specific Nouns",b:"Name the exact thing: elephant, trunk, wings, forest.",e:"A butterfly has two colorful wings."}];
+const A=[{ic:"🐘",t:"Elephant",h:"Forests and grasslands",p:"Big body, long trunk, big ears",f:"Grass, leaves, fruit",s:["An elephant is a large animal.","It has a long trunk and big ears.","It lives in forests and grasslands."],c:"Sumatran elephants in Indonesia are endangered. Protect their forests! 🌳"},
+{ic:"🦁",t:"Lion",h:"Savanna",p:"Strong body, golden fur, thick mane",f:"Meat",s:["A lion is a strong animal.","It has golden fur and a thick mane.","It lives in the savanna."],c:"Wild animals need wide, safe land. Let’s protect their habitat."},
+{ic:"🐇",t:"Rabbit",h:"Fields and gardens",p:"Soft fur, long ears, short tail",f:"Carrots, grass, vegetables",s:["A rabbit is a small animal.","It has soft fur and long ears.","It eats carrots and grass."],c:"Pets need food, water, and a clean home. Care for them kindly. 💛"},
+{ic:"🦋",t:"Butterfly",h:"Gardens and meadows",p:"Colorful wings, thin legs, small body",f:"Nectar from flowers",s:["A butterfly is a beautiful insect.","It has colorful wings.","It drinks nectar from flowers."],c:"Plant flowers to help butterflies live. 🌸"},
+{ic:"🐬",t:"Dolphin",h:"Oceans and seas",p:"Smooth gray skin, long nose, strong tail",f:"Fish and squid",s:["A dolphin is a smart sea animal.","It has smooth skin and a strong tail.","It eats fish."],c:"Keep the sea clean. Do not throw plastic into the water. 🌊"}];
+const P=[{ic:"🕌",t:"Cinta Allah dan Rasul",d:"Hewan adalah ciptaan Allah. Kita bersyukur atas keberagaman makhluk hidup.",e:"Say “Alhamdulillah” when you see a beautiful animal."},
+{ic:"💡",t:"Cinta Ilmu",d:"Rasa ingin tahu mendorong kita belajar kosakata dan menjelajah dunia hewan.",e:"Learn three new animal words every day."},
+{ic:"🤝",t:"Cinta Diri dan Sesama",d:"Kita menyayangi dan menghargai semua makhluk hidup.",e:"Feed your pet kindly and never hurt animals."},
+{ic:"🌳",t:"Cinta Lingkungan",d:"Menjaga habitat berarti menjaga rumah hewan.",e:"Do not litter in rivers or the sea. Plant a tree."},
+{ic:"🇮🇩",t:"Cinta Tanah Air",d:"Indonesia kaya fauna endemik, seperti orangutan, harimau sumatra, dan komodo.",e:"Learn about and protect Indonesian animals."}];
+const AC=["Feed my pet every day 🐈","Not throw trash in rivers or the sea 🗑️","Plant a tree or flowers 🌱","Say Alhamdulillah for Allah’s creatures 🤲","Never hurt animals 💛","Learn about Indonesian animals 🇮🇩","Share what I learn with friends 📣"];
+const PR=[{q:"What is the purpose of descriptive text?",o:["To describe a person, animal, or thing","To tell a past event","To ask someone to do something","To invite people"],a:0,ex:"It describes things in detail."},
+{q:"Matching: which picture is a DOLPHIN?",o:["🦁 Picture 1","🐬 Picture 2","🐇 Picture 3"],a:1,ex:"A dolphin lives in the sea."},
+{q:"“It has a long trunk.” Which word is an adjective?",o:["has","long","trunk","it"],a:1,ex:"Long describes the trunk."},
+{q:"Complete: A rabbit ____ carrots and grass.",o:["eat","eats","eating","ate"],a:1,ex:"Simple present: it + verb-s."}];
+const G=[["I am a very large animal.","I have a long trunk.","I have big ears."],["I am small and soft.","I have long ears.","I eat carrots."],["I live in the sea.","I am smart and friendly.","I can jump high."],["I have colorful wings.","I start life as a caterpillar.","I like flowers."],["I am called the king of the jungle.","I have a thick mane.","I eat meat."]],
+GA=[["🐘 Elephant","🐇 Rabbit","🐬 Dolphin",0],["🦁 Lion","🐇 Rabbit","🦋 Butterfly",1],["🐘 Elephant","🐬 Dolphin","🐇 Rabbit",1],["🦋 Butterfly","🐦 Bird","🐬 Dolphin",0],["🐅 Tiger","🦁 Lion","🐘 Elephant",1]];
+const PL=G.map((c,i)=>({ctx:c.map((x,k)=>`<b>Clue ${k+1}:</b> ${x}`).join("<br>"),q:"WHAT ANIMAL AM I?",o:GA[i].slice(0,3),a:GA[i][3],ex:["Elephants live in forests. Let’s protect them!","Rabbits are gentle. Be kind to them.","Dolphins need clean seas.","Butterflies need flowers and gardens.","Lions need wide wild lands."][i]}));
+const Q=[{q:"Descriptive text is a text that ...",o:["describes the features of a person, animal, or thing","tells a funny story","gives instructions","reports news"],a:0},
+{q:"The social function of descriptive text is ...",o:["to describe a particular thing","to entertain with a story","to persuade people to buy","to tell steps"],a:0},
+{q:"Which part names the animal being described?",o:["Identification","Description","Conclusion","Orientation"],a:0},
+{q:"Which part tells the parts, color, and habit of an animal?",o:["Identification","Description","Title","Resolution"],a:1},
+{q:"A “trunk” is the long nose of an ...",o:["elephant","lion","rabbit","dolphin"],a:0},
+{q:"Which animal lives in the sea?",o:["lion","rabbit","dolphin","elephant"],a:2},
+{q:"“A lion is a strong animal.” The adjective is ...",o:["lion","is","strong","animal"],a:2},
+{q:"A butterfly ____ nectar from flowers.",o:["drink","drinks","drank","drinking"],a:1,ex:"Use verb-s after it."},
+{q:"Elephants ____ in herds.",o:["live","lives","living","lived"],a:0,ex:"Plural subject: no -s."},
+{ctx:"Dolphins are smart sea animals. They have smooth gray skin and a long nose. They eat fish. We must keep the sea clean so dolphins can live safely.",q:"What should we do to help dolphins?",o:["Keep the sea clean","Throw trash into the sea","Catch them","Feed them snacks"],a:0,ex:"Cinta Lingkungan! 🌊"}];
+const V={
+welcome:()=>`<div class="hero"><div class="faces" aria-hidden="true"><span>🐘</span><span>🦁</span><span>🐇</span><span>🦋</span><span>🐬</span></div><span class="pill">Class VII · Descriptive Text · KBC</span><h1>ENGLISH ADVENTURE: EXPLORE THE ANIMAL KINGDOM</h1><p class="sub">Welcome, explorer! Let’s learn, play, and care for Allah’s creatures. 🌿</p><div class="row"><button class="btn" onclick="go('menu')">🚀 START ADVENTURE</button><button class="btn alt" id="hp">❓ HOW TO PLAY</button><button class="btn ghost" id="ab">ℹ️ ABOUT</button></div></div>`,
+menu:()=>`<h2 class="center">Choose your adventure</h2><div class="grid">${[["📖","LET’S LEARN","obj"],["🔍","LET’S EXPLORE","explore"],["🎮","LET’S PLAY","play"],["📝","LET’S QUIZ","quiz"]].map(x=>`<button class="tile" onclick="go('${x[2]}')"><span class="ic">${x[0]}</span>${x[1]}</button>`).join("")}</div><div class="row"><button class="btn ghost" onclick="go('practice')">✏️ PRACTICE</button><button class="btn ghost" onclick="go('panca')">💛 PANCA CINTA</button></div>`,
+obj:()=>`<div class="card"><h2>🎯 Learning Objectives</h2><p>After completing this lesson, students are expected to:</p><ul><li>Identify the definition and purpose of descriptive text.</li><li>Recognize vocabulary related to animals.</li><li>Identify the generic structure of descriptive text.</li><li>Understand the use of simple present tense and adjectives.</li><li>Describe animals using simple English sentences.</li><li>Demonstrate love and care for living creatures and the environment. 💛</li></ul></div>`,
+learn:()=>`<h2 class="center">📖 Tap a card to learn</h2><div id="in"></div>`,
+explore:()=>`<h2 class="center">🔍 Animal World: tap an animal</h2><div id="in"></div>`,
+practice:()=>`<div id="in"></div>`,play:()=>`<h2 class="center">🎮 Guess the Animal</h2><div id="in"></div>`,quiz:()=>`<div id="in"></div>`,
+panca:()=>`<h2 class="center">💛 Panca Cinta Reflection</h2><div id="in"></div><div class="card" style="margin-top:16px"><h3>What can you do to show your love and care for animals?</h3><div id="ch"></div><div class="fb ok" id="cf"></div></div>`,
+closing:()=>`<div class="hero"><div class="faces" aria-hidden="true"><span>🏆</span><span>🐘</span><span>🦁</span><span>🐇</span><span>🦋</span><span>🐬</span></div><h1>CONGRATULATIONS! YOU HAVE COMPLETED YOUR ENGLISH ADVENTURE!</h1><h2 class="sub">“Learn with curiosity, care with kindness, and protect all living things.”</h2><div class="row"><button class="btn" onclick="go('welcome')">🔄 PLAY AGAIN</button><button class="btn alt" onclick="go('menu')">🏠 BACK TO HOME</button></div></div>`};
+const I={
+learn:e=>tiles(e,L,x=>`<h2>${x.t}</h2><p>${x.b}</p><p><span class="pill">Example</span> ${x.e}</p>`),
+explore:e=>tiles(e,A,x=>`<h2>${x.ic} ${x.t.toUpperCase()}</h2><p><b>Habitat:</b> ${x.h}<br><b>Physical:</b> ${x.p}<br><b>Food:</b> ${x.f}</p><p>${x.s.join("<br>")}</p><p><span class="pill">💛 Care</span> ${x.c}</p>`),
+panca:e=>{tiles(e,P,x=>`<h2>${x.ic} ${x.t}</h2><p>${x.d}</p><p><span class="pill">Action</span> ${x.e}</p>`);const ch=$("#ch"),on=new Set;ch.innerHTML=AC.map((a,i)=>`<button class="chip" data-i="${i}">${a}</button>`).join("");ch.onclick=ev=>{const b=ev.target.closest(".chip");if(!b)return;const i=+b.dataset.i;on.has(i)?on.delete(i):on.add(i);b.classList.toggle("on");$("#cf").textContent=on.size?`Barakallah! You chose ${on.size} action${on.size>1?"s":""} of love. Do them for real! 💛`:""}},
+practice:e=>engine(e,PR,{name:"Practice",retry:1}),play:e=>engine(e,PL,{name:"Round",retry:1,instant:1}),quiz:e=>engine(e,Q,{name:"Question",ab:1})};
+function draw(){$("#v").innerHTML=V[cur]();const w=cur==="welcome";
+$("#top").innerHTML=w?"":`<button class="btn ghost" onclick="go('menu')">🏠 HOME</button><div class="t">${TT[cur]}</div><button class="btn ghost" onclick="bk()">◀ BACK</button>`;
+$("#foot").innerHTML=w||cur==="closing"?"":`<span></span><button class="btn" onclick="nx()">NEXT ▶</button>`;
+if(I[cur])I[cur]($("#in")||$("#v"));
+if(w){$("#hp").onclick=()=>modal("How to play",`<ol><li>Tap <b>START ADVENTURE</b>.</li><li>Pick a card in the main menu.</li><li>Tap cards and animals to open them.</li><li>Choose an answer, then tap <b>CHECK ANSWER</b>.</li><li>Use <b>HOME</b>, <b>BACK</b>, and <b>NEXT</b> to move around.</li></ol><p>Petunjuk: ketuk kartu, pilih jawaban, lalu tekan CHECK ANSWER.</p>`);$("#ab").onclick=()=>modal("About",`<p>Interactive learning media for Class VII SMP/MTs, English: <b>Descriptive Text – Animals</b>. Based on the Kurikulum Berbasis Cinta (Panca Cinta). Duration: 2 × 40 minutes.</p>`)}}
+draw();
+</script></body></html>
